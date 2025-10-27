@@ -7,5 +7,7 @@
 
 Adicionando alias permanentemente
 echo "alias commitgh='bash ./scripts/auto_commit.sh'" >> ~/.bashrc
-depecho "alias deployfire='bash ./scripts/deploy_firebase.sh'" >> ~/.bashrc
+echo "alias deployfire='bash ./scripts/deploy_firebase.sh'" >> ~/.bashrc
 echo "alias deployall='bash ./scripts/auto_push_deploy.sh'" >> ~/.bashrc
+
+source ~/.bashrc -> para recarregar o bash depois dos echos

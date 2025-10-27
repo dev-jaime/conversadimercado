@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Chatbot HF</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -81,7 +82,7 @@
   button:hover { background-color: #0e8c6d; }
 </style>
 </head>
-<body>
+<body onload="input.focus()">
 <h1>Chatbot Hugging Face</h1>
 
 <div id="chat"></div>
@@ -141,11 +142,14 @@ async function sendMessage() {
     const data = await response.json();
     const reply = data?.choices?.[0]?.message?.content || "Sem resposta";
 
+    
     // Simula streaming
     let i = 0;
     const interval = setInterval(() => {
       if (i < reply.length) {
-        botDiv.innerHTML += reply[i];
+        //botDiv.innerHTML += reply[i];
+        // renderiza Markdown, incluindo tabelas
+        botDiv.innerHTML += marked.parse(reply);
         i++;
         scrollChat();
       } else {
