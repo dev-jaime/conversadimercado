@@ -27,14 +27,14 @@ async function sendMessage() {
   chat.innerHTML += `<div><b>Você:</b> ${userMessage}</div>`;
   input.value = '';
 
-  const res = await fetch("/api/chat", {
+  const res = await fetch("https://conversadimercado-f2akxjtzf-jaime-mendes-projects-1cc8ffa8.vercel.app/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: userMessage })
   });
 
   const data = await res.json();
-  const botReply = data[0]?.generated_text || "Sem resposta";
+  const botReply = data.reply || "Sem resposta";
 
   chat.innerHTML += `<div><b>Bot:</b> ${botReply}</div>`;
   chat.scrollTop = chat.scrollHeight;
